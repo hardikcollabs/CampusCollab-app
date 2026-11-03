@@ -1,35 +1,23 @@
 # CampusCollab
 
-CampusCollab is a student-friendly workspace for finding reliable teammates, sharing project opportunities, and coordinating team work.
+**CampusCollab** is a student collaboration platform for finding dependable teammates and turning ideas into real projects.
 
-## Stack
+## What CampusCollab helps students do
 
-- Next.js App Router + TypeScript
-- Tailwind CSS
-- Supabase Auth + PostgreSQL + Row Level Security
-- Vercel-compatible deployment
+- **Find teammates:** Discover students by skills, interests, availability, and collaboration goals.
+- **Explore opportunities:** Browse academic projects, hackathons, competitions, startup ideas, and other campus opportunities.
+- **Create project listings:** Share an idea, define the skills you need, set team capacity, and invite the right contributors.
+- **Manage collaboration:** Review join requests, organize teammates, and keep project work in one focused workspace.
+- **Build a portfolio:** Create a visible record of projects and contributions that can support future academic and career opportunities.
 
-## Local setup
+## Product experience
 
-```bash
-npm install
-cp .env.example .env.local
-npm run dev
-```
+CampusCollab provides a welcoming landing page, project discovery, project details, account registration and login, profiles, dashboards, privacy settings, guidelines, and moderation tools. The interface is designed to help students move from an idea to a productive team with less friction.
 
-Create a Supabase project, copy its URL and anon key into `.env.local`, then run `supabase/schema.sql` and `supabase/seed.sql` in the SQL editor. Enable email/password Auth and require email confirmation in Supabase Auth settings.
+## Technology
 
-The UI includes safe demo records when no Supabase environment variables are present, so the interface can be previewed without credentials. Connect the browser client in `src/lib/supabase-browser.ts` as data fetching is wired into each feature.
+CampusCollab is built with Next.js, TypeScript, Tailwind CSS, Supabase, and PostgreSQL. It is designed for deployment on Vercel.
 
-## Safety and privacy
+## Vision
 
-RLS is enabled on every application table. Profiles intentionally do not contain email or phone fields; email remains in Supabase Auth and is never selected for public UI. Database checks prevent duplicate requests, self-requests, and requests after team capacity is reached. The project creation trigger provides a basic per-user rate limit. Report and block tables are moderation-ready.
-
-This MVP intentionally does not include chat, payments, recommendations, or identity verification. Future additions should use server-side authorization, audit logs, and explicit privacy controls.
-
-## Checks
-
-```bash
-npm run lint
-npm run build
-```
+CampusCollab makes it easier for ambitious students to meet the right people, collaborate safely, and transform class projects, hackathon concepts, and startup ideas into meaningful work.
