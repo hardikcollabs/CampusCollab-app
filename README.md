@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CampusCollab
 
-## Getting Started
+CampusCollab is a student-friendly workspace for finding reliable teammates, sharing project opportunities, and coordinating team work.
 
-First, run the development server:
+## Stack
+
+- Next.js App Router + TypeScript
+- Tailwind CSS
+- Supabase Auth + PostgreSQL + Row Level Security
+- Vercel-compatible deployment
+
+## Local setup
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create a Supabase project, copy its URL and anon key into `.env.local`, then run `supabase/schema.sql` and `supabase/seed.sql` in the SQL editor. Enable email/password Auth and require email confirmation in Supabase Auth settings.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The UI includes safe demo records when no Supabase environment variables are present, so the interface can be previewed without credentials. Connect the browser client in `src/lib/supabase-browser.ts` as data fetching is wired into each feature.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Safety and privacy
 
-## Learn More
+RLS is enabled on every application table. Profiles intentionally do not contain email or phone fields; email remains in Supabase Auth and is never selected for public UI. Database checks prevent duplicate requests, self-requests, and requests after team capacity is reached. The project creation trigger provides a basic per-user rate limit. Report and block tables are moderation-ready.
 
-To learn more about Next.js, take a look at the following resources:
+This MVP intentionally does not include chat, payments, recommendations, or identity verification. Future additions should use server-side authorization, audit logs, and explicit privacy controls.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Checks
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run lint
+npm run build
+```
