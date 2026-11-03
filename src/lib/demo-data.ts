@@ -1,0 +1,8 @@
+import type { Project } from "./types";
+
+export const demoProjects: Project[] = [
+  { id: "1", title: "Campus sustainability dashboard", description: "Build a data-driven dashboard that helps students understand and reduce their campus carbon footprint.", category: "Academic", skills: ["React", "Data Viz", "Figma"], owner: "Maya R.", college: "Northbridge University", needed: 2, members: 3, deadline: "Apr 18, 2025", commitment: "4–6 hrs/week", status: "Open", featured: true },
+  { id: "2", title: "Fintech for first-gen students", description: "A hackathon team exploring approachable tools for budgeting, scholarships, and financial confidence.", category: "Hackathon", skills: ["Product", "Research", "Node.js"], owner: "Arjun P.", college: "Lakeside College", needed: 1, members: 3, deadline: "Mar 29, 2025", commitment: "6–8 hrs/week", status: "Open", featured: true },
+  { id: "3", title: "Study buddy matching app", description: "Design and prototype a lightweight matching experience for students in large intro courses.", category: "Startup", skills: ["UX Research", "Next.js", "Supabase"], owner: "Jordan K.", college: "Northbridge University", needed: 2, members: 1, deadline: "May 10, 2025", commitment: "3–4 hrs/week", status: "Open" },
+  { id: "4", title: "Women in STEM stories", description: "A collaborative multimedia project collecting and sharing student stories from STEM communities.", category: "Competition", skills: ["Writing", "Video", "Social Media"], owner: "Priya S.", college: "Metro State", needed: 0, members: 4, deadline: "Mar 22, 2025", commitment: "2–3 hrs/week", status: "Full" },
+];

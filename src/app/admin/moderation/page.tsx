@@ -1,0 +1,13 @@
+"use client";
+import { useState } from "react";
+import { CheckCircle2, Eye, Flag, Gavel } from "lucide-react";
+
+const demoReports = [
+  { id: "R-1042", target: "Fintech for first-gen students", reason: "Spam", reporter: "Anonymous to moderators", status: "Open" },
+  { id: "R-1041", target: "Profile: student_204", reason: "Harassment", reporter: "Anonymous to moderators", status: "Under review" },
+];
+
+export default function ModerationPage() {
+  const [reports, setReports] = useState(demoReports);
+  return <main className="mx-auto max-w-6xl px-6 py-12 lg:px-8"><div className="flex items-start gap-4"><div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600"><Gavel size={21} /></div><div><p className="text-sm font-semibold uppercase tracking-widest text-blue-600">Moderator workspace</p><h1 className="mt-1 text-3xl font-semibold tracking-tight text-slate-950">Moderation queue</h1><p className="mt-2 text-slate-600">Review reports, record proportionate actions, and preserve an appeal route.</p></div></div><div className="mt-8 rounded-2xl border border-slate-200 bg-white shadow-sm"><div className="border-b border-slate-200 px-6 py-4"><p className="text-sm font-semibold text-slate-800">{reports.length} reports requiring attention</p></div><div className="divide-y divide-slate-100">{reports.map((report) => <div key={report.id} className="flex flex-col gap-4 px-6 py-5 lg:flex-row lg:items-center lg:justify-between"><div className="flex gap-4"><div className="mt-1 text-amber-600"><Flag size={19} /></div><div><p className="font-semibold text-slate-900">{report.target}</p><p className="mt-1 text-sm text-slate-500">{report.id} · {report.reason} · {report.reporter}</p><span className="mt-2 inline-block rounded-full bg-slate-100 px-2.5 py-1 text-xs text-slate-600">{report.status}</span></div></div><div className="flex gap-2"><button className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-600"><Eye size={15} /> Review</button><button onClick={() => setReports(reports.filter((item) => item.id !== report.id))} className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white"><CheckCircle2 size={15} /> Record action</button></div></div>)}</div></div><p className="mt-5 text-xs leading-5 text-slate-500">Production note: protect this route with a server-side moderator role check. Every decision should write `moderation_actions` and `audit_logs`, notify the affected user with a specific reason, and allow an in-app appeal.</p></main>;
+}
